@@ -21,6 +21,7 @@ angular.module('starter.controllers', [])
         $scope.centerOnMe();
       }
       google.maps.event.addDomListener(window, 'load', initialize);
+  
       
       $scope.centerOnMe = function() {
         if(!$scope.map) {
