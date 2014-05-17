@@ -5,7 +5,7 @@
         {{friend.name}}
       </ion-item>
       
-      <ion-item ng-repeat="item in items" type="item-text-wrap" href="#/tab/friend/{{item.id}}">
+      <ion-item ng-repeat="(name,item) in items" type="item-text-wrap" href="#/tab/friend/{{name}}">
         {{item.name}}
       </ion-item>
     </ion-list>

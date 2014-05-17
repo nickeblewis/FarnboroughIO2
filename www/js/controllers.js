@@ -60,8 +60,50 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
+.controller('FriendDetailCtrl', function($scope, $stateParams, Friends, $firebase) {
   $scope.friend = Friends.get($stateParams.friendId);
+  $scope.place = {};
+
+  var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $stateParams.itemId);
+    dataRef.on('value', function(snapshot) {
+      console.log(snapshot.val());
+      $scope.place.name = snapshot.val().name;
+      $scope.place.description = snapshot.val().description;
+      $scope.place.lat = snapshot.val().lat;
+      $scope.place.lng = snapshot.val().lng;
+  });
+
+ 
+
+  angular.extend($scope, {
+    center: {
+      lat: $scope.place.lat,
+      lng: $scope.place.lng,
+      zoom: 16
+    },
+    markers: {
+      main_marker: {
+        lat: $scope.place.lat,
+        lng: $scope.place.lng,
+        focus: true,
+        draggable: true,
+        message: "Fred"
+             
+      }
+    },
+    defaults: {
+      maxZoom: 18,
+      minZoom: 1,
+      zoom: 6,
+      zoomControlPosition: 'topright',
+      tileLayerOptions: {
+        opacity: 0.9,
+        detectRetina: true,
+        reuseTiles: true,
+      },
+      scrollWheelZoom: false
+    }
+  });
 })
 
 .controller('AccountCtrl', function($scope) {

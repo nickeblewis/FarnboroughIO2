@@ -58,7 +58,7 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
       }
     })
     .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+      url: '/friend/:itemId',
       views: {
         'tab-friends': {
           templateUrl: 'templates/friend-detail.html',
