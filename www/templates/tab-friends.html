@@ -1,10 +1,10 @@
-<ion-view title="Places">
+<ion-view title="Farnborough Guide">
    
   <ion-content class="has-header">   
    
     <div ng-repeat="(name,item) in items | orderByPriority | filter:search | orderBy:'updated':reverse=true" class="list card">
       <div class="item item-avatar">
-        <img src="http://placehold.it/40x40" ng-href="#/tab/friend/{{name}}">
+        <img src="http://placehold.it/40x40" ng-href="#/tab/friend/{{item.$id}}">
           <h2>{{item.name}}</h2>
           <p>{{item.description}}</p>
       </div>
@@ -12,8 +12,12 @@
       <!-- <div class="item item-image">
         <img src="http://placehold.it/298x298">
       </div>-->
-<a  href="#/tab/friend/{{name}}" class="button button-full icon-right ion-chevron-right button-calm">Learn More</a>
-    
+<!--<a  href="#/tab/friend/{{item.$id}}" class="button button-full icon-right ion-chevron-right button-calm">Learn More</a>-->
+    <div class="button-bar">
+      <a href="#/tab/friend/{{item.$id}}" class="button button-calm">View</a>
+  <a href="#/tab/edit/{{item.$id}}" class="button button-assertive">Edit</a>
+ 
+</div>
 
     </div>
   </ion-content>

@@ -73,6 +73,15 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
         }
       }
     })
+  .state('tab.friend-edit', {
+      url: '/edit/:itemId',
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/friend-edit.html',
+          controller: 'FriendEditCtrl'
+        }
+      }
+    })
 
     .state('tab.account', {
       url: '/account',

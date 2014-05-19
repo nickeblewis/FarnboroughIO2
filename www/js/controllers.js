@@ -120,5 +120,22 @@ angular.module('starter.controllers', [])
   });
 })
 
+.controller('FriendEditCtrl', function($scope, $stateParams, Friends, $firebase) {
+  var placeUrl = 'https://farnborough.firebaseio.com/places/' + $stateParams.itemId;
+    $scope.place = $firebase(new Firebase(placeUrl));
+ 
+    $scope.destroy = function() {
+      $scope.place.$remove();
+      $location.path('/');
+    };
+
+    $scope.save = function() {
+      $scope.place.updated = (new Date()).getTime();
+      $scope.place.$save();
+      $location.path('/');
+    };
+
+})
+
 .controller('AccountCtrl', function($scope) {
 });
