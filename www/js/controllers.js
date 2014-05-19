@@ -45,19 +45,27 @@ angular.module('starter.controllers', [])
 .controller('FriendsCtrl', function($scope, Friends, $firebase, $ionicLoading) {
   $scope.friends = Friends.all();
   var placesURL= "https://farnborough.firebaseio.com"
-      
-  $scope.items = $firebase(new Firebase(placesURL + '/places'));
+  
+  $scope.items = {};
+  
+  //$scope.alreadyLoaded = null;
+  
+  
   // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
 
-  $scope.loading = $ionicLoading.show({
-          content: 'Loading places...',
-          showBackdrop: false
-        });
+  //if(!alreadyLoaded) {
+  //  $scope.loading = $ionicLoading.show({
+  //        content: 'Loading places...',
+  //        showBackdrop: false
+  //      });
+  //}
   
+  $scope.items = $firebase(new Firebase(placesURL + '/places'));
   // TODO - Should I do something more specific with this onload event?
   $scope.items.$on('loaded', function() {
-     $scope.loading.hide();
-    console.log($scope.items);
+     //$scope.loading.hide();
+     // alreadyLoaded = true;
+    //console.log($scope.items);
   });
 
   // TODO: The pull to refresh feature isn't working for the Phonegap build but what should happen is that the places list gets refreshed
