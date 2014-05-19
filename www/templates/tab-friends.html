@@ -1,10 +1,6 @@
-<ion-view title="Friends">
+<ion-view title="Places">
   <ion-content class="has-header">
-    <ion-list>
-      <ion-item ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-        {{friend.name}}
-      </ion-item>
-      
+    <ion-list>           
       <ion-item ng-repeat="(name,item) in items" type="item-text-wrap" href="#/tab/friend/{{name}}">
         {{item.name}}
       </ion-item>
