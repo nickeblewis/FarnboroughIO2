@@ -83,12 +83,12 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
       }
     })
 
-    .state('tab.account', {
-      url: '/account',
+    .state('tab.friend-add', {
+      url: '/add',
       views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'tab-add': {
+          templateUrl: 'templates/friend-add.html',
+          controller: 'AddCtrl'
         }
       }
     })

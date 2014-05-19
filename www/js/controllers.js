@@ -126,16 +126,53 @@ angular.module('starter.controllers', [])
  
     $scope.destroy = function() {
       $scope.place.$remove();
-      $location.path('/');
+      //$location.path('/');
     };
 
     $scope.save = function() {
       $scope.place.updated = (new Date()).getTime();
       $scope.place.$save();
-      $location.path('/');
+      //$location.path('/');
     };
 
 })
 
-.controller('AccountCtrl', function($scope) {
+
+
+.controller('AddCtrl', function($scope, $firebase) {
+
+  var URL= "https://farnborough.firebaseio.com"
+  // var ref = new Firebase("https://farnborough.firebaseio.com/places");
+
+  $scope.items = $firebase(new Firebase(URL + '/places'));
+  //$scope.items = Items.all();
+
+  var lat = 0, 
+      lng = 0;
+
+  $scope.place = {};
+
+ // $scope.init = function() {
+   // navigator.geolocation.getCurrentPosition(
+     // function(position) {
+       // $scope.place.lat = position.coords.latitude;
+        //$scope.place.lng = position.coords.longitude;
+      //},
+      //function() {
+       // alert('Error getting location');
+      //});
+  //};
+
+  //$scope.init();
+
+  $scope.$on('tab.hidden', function() {
+    console.log("Hidden");
+  });
+
+  $scope.save = function(place) {
+    $scope.items.$add({
+      name: $scope.place.name,
+      description: $scope.place.description,
+    });
+  };
 });
