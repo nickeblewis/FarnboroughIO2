@@ -20,14 +20,6 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
     }
   });
 })
-//.value('alreadyLoaded', false)
-.directive('searchbar', function () {
-    return {
-      template: '<div class="col-md-12 card search"><div class="status-bar"><input type="text" ng-model="search" class="form-control" placeholder="Search"></div></div>',
-      restrict: 'EA',
-      replace: true
-    };
-  })
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
