@@ -79,7 +79,7 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, $ionicLoading) {
   function initialize() {
     var mapOptions = {
-      center: new google.maps.LatLng(43.07493,-89.381388),
+      center: new google.maps.LatLng(51.2944828,-0.7694426),
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
