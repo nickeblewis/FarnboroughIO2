@@ -139,6 +139,9 @@ angular.module('starter.controllers', [])
      // alreadyLoaded = true;
     //console.log($scope.items);
   });
+                  $scope.timeAgo = function(ms) {
+      return moment(ms).fromNow();
+    };
 })
 
 .controller('FriendDetailCtrl', function($scope, $stateParams, Friends, $firebase) {

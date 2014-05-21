@@ -8,6 +8,8 @@
         <ul class="feed-list" ng-show="item.feed.length > 0">
            <li ng-repeat="item in item.feed" ng-if="item != null"><i class="glyphicon glyphicon-user"></i><i class="ion-chatboxes"></i> {{item}}</li>
         </ul>
+        <br>
+        <p>Updated {{timeAgo(item.updated)}}</p>
       </div>
       <!-- <div class="item item-image">
         <img src="http://placehold.it/298x298">
