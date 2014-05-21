@@ -160,6 +160,8 @@ angular.module('starter.controllers', [])
     $scope.items.$add({
       name: $scope.place.name,
       description: $scope.place.description,
+      updated: (new Date()).getTime()
     });
+    $location.path('/');
   };
 });
