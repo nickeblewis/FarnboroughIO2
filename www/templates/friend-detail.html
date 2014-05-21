@@ -9,7 +9,9 @@
     <leaflet defaults="defaults" center="center" marker="markers" height="180px" width="100%"></leaflet>
     <h1>{{ place.name }}</h1>
     <p>{{ place.description }}</p>
-    
+<!--     <ul class="feed-list" ng-show="place.feed.length > 0">
+           <li ng-repeat="item in place.feed" ng-if="item != null"><i class="glyphicon glyphicon-user"></i><i class="ion-chatboxes"></i> {{item}}</li>
+        </ul> -->
     <!-- Not sure about including the GPS coords here at the very least show a map! -->
     
     <!-- <p>{{ place.lat }}</p>
