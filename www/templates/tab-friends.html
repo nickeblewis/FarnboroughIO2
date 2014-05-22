@@ -1,10 +1,42 @@
 <ion-view title="Farnborough Guide">   
-  <ion-content class="has-header">     
+  <ion-content class="has-header">  
+    <!-- THOUGHT: This should become a directive taking params for Firebase Ref, Limits, sort and other params -->
+
+    <!-- Changing the structure of the database so that we have -->
+    <!-- Farnborough (Firebase DB) to be renamed as Guides -->
+    <!-- - Farnborough -->
+        
+    <!-- -- Feed - which is updated when other things are updated, i.e Linkup Ltd have changed their profile or... -->
+    <!-- --      - when someone with a profile publishes an announcement -->
+    
+    <!-- -- Profiles (paid for/premium)-->
+    
+    <!-- -- Types or Profiles are as follows: -->
+    
+    <!-- -- Businesses -->
+    <!-- -- Eating Out/In -->
+    <!-- -- Historic -->
+    <!-- -- Transport -->
+    <!-- -- Articles -->
+    <!-- -- Activities -->
+    <!-- -- Parks -->
+    <!-- -- Organisations (such as Scouts and the like) -->
+    <!-- -- Any others? You bet, lets just add new ones as we go along -->
+    
+    
+    <!-- - Portsmouth -->
+    <!-- - Winchester and so on -->
+    <!-- - Malta!! -->
+    
+    <!-- -->
+    <searchbar></searchbar>
+    <statuspost></statuspost>
     <div ng-repeat="(name,item) in items | orderByPriority | filter:search | orderBy:'updated':reverse=true" class="list card">
       <div class="item item-avatar">
         <img src="http://placehold.it/40x40" ng-href="#/tab/friend/{{item.$id}}">
         <h2>{{item.name}}</h2>
         <p>{{item.description}}</p>
+        <!-- THOUGHT: How should this fit in the above controller? -->
         <ul class="feed-list" ng-show="item.feed.length > 0">
            <li ng-repeat="item in item.feed" ng-if="item != null"><i class="glyphicon glyphicon-user"></i><i class="ion-chatboxes"></i> {{item}}</li>
         </ul>
@@ -16,8 +48,9 @@
       </div>-->
       <!--<a  href="#/tab/friend/{{item.$id}}" class="button button-full icon-right ion-chevron-right button-calm">Learn More</a>-->
       <div class="button-bar">
-        <a href="#/tab/friend/{{item.$id}}" class="button button-calm">View</a>
-        <a href="#/tab/edit/{{item.$id}}" class="button button-assertive">Edit</a> 
+        <!-- QUESTION: I always look at these and think should they not be in button tags? Surely that would be more readable? -->
+        <a href="#/tab/friend/{{item.$id}}" class="button button-small button-calm">View</a>
+        <a href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> 
       </div>
     </div>
   </ion-content>

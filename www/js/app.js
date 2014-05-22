@@ -1,11 +1,11 @@
-// Ionic Starter App
+// FG App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.services'])
+angular.module('fg', ['firebase', 'ionic', 'fg.controllers', 'fg.services', 'fg.directives'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -42,7 +42,7 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
       views: {
         'tab-dash': {
           templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
+          controller: 'MapCtrl'
         }
       }
     })
@@ -52,7 +52,7 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
       views: {
         'tab-friends': {
           templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+          controller: 'FeedCtrl'
         }
       }
     })
@@ -61,7 +61,7 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
       views: {
         'tab-friends': {
           templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+          controller: 'DetailCtrl'
         }
       }
     })
@@ -70,7 +70,7 @@ angular.module('starter', ['firebase', 'ionic', 'starter.controllers', 'starter.
       views: {
         'tab-friends': {
           templateUrl: 'templates/friend-edit.html',
-          controller: 'FriendEditCtrl'
+          controller: 'EditCtrl'
         }
       }
     })
