@@ -30,28 +30,7 @@
     
     <!-- -->
     <searchbar></searchbar>
-    <statuspost></statuspost>
-    <div ng-repeat="(name,item) in items | orderByPriority | filter:search | orderBy:'updated':reverse=true" class="list card">
-      <div class="item item-avatar">
-        <img src="http://placehold.it/40x40" ng-href="#/tab/friend/{{item.$id}}">
-        <h2>{{item.name}}</h2>
-        <p>{{item.description}}</p>
-        <!-- THOUGHT: How should this fit in the above controller? -->
-        <ul class="feed-list" ng-show="item.feed.length > 0">
-           <li ng-repeat="item in item.feed" ng-if="item != null"><i class="glyphicon glyphicon-user"></i><i class="ion-chatboxes"></i> {{item}}</li>
-        </ul>
-        <br>
-        <p>Updated {{timeAgo(item.updated)}}</p>
-      </div>
-      <!-- <div class="item item-image">
-        <img src="http://placehold.it/298x298">
-      </div>-->
-      <!--<a  href="#/tab/friend/{{item.$id}}" class="button button-full icon-right ion-chevron-right button-calm">Learn More</a>-->
-      <div class="button-bar">
-        <!-- QUESTION: I always look at these and think should they not be in button tags? Surely that would be more readable? -->
-        <a href="#/tab/friend/{{item.$id}}" class="button button-small button-calm">View</a>
-        <a href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> 
-      </div>
-    </div>
+    <statuspost></statuspost>    
+    <feedlist ref="ref" limit="limit" orderby="orderbypriority"></feedlist>
   </ion-content>
 </ion-view>

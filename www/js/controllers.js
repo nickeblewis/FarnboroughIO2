@@ -1,20 +1,5 @@
 angular.module('fg.controllers', [])
 
-.controller('PostStatusCtrl', function($scope) {
-  var messageListRef = new Firebase('https://farnborough.firebaseio.com/feed');
-  var newMessageRef = messageListRef.push();          
-                   
-  $scope.postStatus = function() {
-    newMessageRef.set({
-      'message': $scope.status,
-      'updated': (new Date()).getTime()
-    });
-    
-    $scope.status = "";
-    
-  };      
-})
-
 .controller('MapCtrl', function($scope, $ionicLoading) {
   function initialize() {
     // Show the middle of Farnborough but this could be other places though
@@ -61,33 +46,13 @@ angular.module('fg.controllers', [])
 })
 
 .controller('FeedCtrl', function($scope, Friends, $firebase, $ionicLoading) {
+  $scope.ref = 'https://farnborough.firebaseio.com/feed';
+  $scope.limit = 10;
+  $scope.orderby = 'updated';
   
-  // The following isn't used but thinking about moving my FB data handling into a service a bit like below
-  //$scope.friends = Friends.all();
-                
-  var placesURL= "https://farnborough.firebaseio.com"
-    
-  //$scope.alreadyLoaded = null;    
-  // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
-  //if(!alreadyLoaded) {
-  //  $scope.loading = $ionicLoading.show({
-  //        content: 'Loading places...',
-  //        showBackdrop: false
-  //      });
-  //}
+  // Now we can set the source ref for the feed, other refs we may use are listed below
+  // $scope.ref = 'https://farnborough.firebaseio.com/feed';
   
-  $scope.items = $firebase(new Firebase(placesURL + '/places'));
-  
-  // TODO - Should I do something more specific with this onload event?
-  $scope.items.$on('loaded', function() {
-    //$scope.loading.hide();
-    // alreadyLoaded = true;
-    //console.log($scope.items);
-  });
-                  
-  $scope.timeAgo = function(ms) {
-    return moment(ms).fromNow();
-  };
 })
 
 .controller('DetailCtrl', function($scope, $stateParams, Friends, $firebase) {
