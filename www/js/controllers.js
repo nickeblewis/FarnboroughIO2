@@ -46,7 +46,7 @@ angular.module('fg.controllers', [])
 })
 
 .controller('FeedCtrl', function($scope, Friends, $firebase, $ionicLoading) {
-  $scope.ref = 'https://farnborough.firebaseio.com/feed';
+  $scope.ref = 'https://farnborough.firebaseio.com/places';
   $scope.limit = 10;
   $scope.orderby = 'updated';
   
@@ -137,7 +137,7 @@ angular.module('fg.controllers', [])
 
     // Need some unit tests for this but...
     // "Link Up Ltd" updated their Profile
-    var messageListRef = new Firebase('https://farnborough.firebaseio.com/feed');
+    var messageListRef = new Firebase('https://farnborough.firebaseio.com/places');
     var newMessageRef = messageListRef.push();          
                    
     //$scope.place.imageData = 0;
@@ -189,4 +189,8 @@ angular.module('fg.controllers', [])
     });
     $location.path('/');
   };
+})
+
+.controller('LoginCtrl', function() {
+  
 });

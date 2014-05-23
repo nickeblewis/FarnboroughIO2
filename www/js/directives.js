@@ -42,10 +42,10 @@ angular.module('fg.directives', [])
           '<br>' +
           '<p>Updated {{timeAgo(item.updated)}}</p>' +
           '</div>' +
-//           '<div class="button-bar">' +      
-//           '<a href="#/tab/friend/{{item.$id}}" class="button button-small button-calm">View</a>' +
-//           '<a href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> ' +
-//         '</div>' +
+          '<div class="button-bar">' +      
+          '<a href="#/tab/friend/{{item.$id}}" class="button button-small button-calm">View</a>' +
+          '<a href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> ' +
+        '</div>' +
       '</div>'
     );
   }
@@ -68,7 +68,7 @@ angular.module('fg.directives', [])
   };      
 })
 
-.controller('FeedListCtrl', function($scope, Feed, $ionicLoading, LoaderService) {
+.controller('FeedListCtrl', function($scope, Feed, $ionicLoading, LoaderService, Authenticate) {
     
   //$scope.alreadyLoaded = null;    
   // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
