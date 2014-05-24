@@ -5,22 +5,10 @@ angular.module('fg.directives', [])
   function ($templateCache) {
     $templateCache.put(
       'searchbar.html',
-      '<div class="col-md-12 card search"><div class="status-bar">' +
-      '<input type="text" ng-model="search" class="form-control" placeholder="Search this feed">' +
-      '</div></div>'
-    );
-  }
-])
-
-.run(['$templateCache',
-  function ($templateCache) {
-    $templateCache.put(
-      'statusbar.html',
-      '<div class="col-md-12 card search">' +
-        '<div class="status-bar">' +
-          '<input type="text" ng-model="status" class="form-control" placeholder="Post a status">' +
-        '</div>' + 
-        '<div class="button" ng-click="postStatus()">Post</div>' +
+      '<div class="list list-inset">' +
+        '<label class="item item-input">' +
+        '<i class="icon ion-search placeholder-icon"></i>' +
+        '<input type="text" ng-model="search" placeholder="Search this feed">' +
       '</div>'
     );
   }
@@ -29,8 +17,32 @@ angular.module('fg.directives', [])
 .run(['$templateCache',
   function ($templateCache) {
     $templateCache.put(
+      'statusbar.html',      
+      '<div class="list">' +
+  '<div class="item item-input-inset">' +
+    '<label class="item-input-wrapper">' +
+      '<input type="text" ng-model="status" placeholder="Status post">' +
+    '</label>' +
+    '<button class="button button-small" ng-click="postStatus()">' +
+      'Post' +
+    '</button>' +
+  '</div>' +
+'</div>'
+    );
+  }
+])
+
+.run(['$templateCache',
+  function ($templateCache) {
+    $templateCache.put(
       'feedlist.html',
-      '<div ng-repeat="(name,item) in items | orderByPriority | filter:search | orderBy:\'updated\':reverse=true" class="list card">' +
+      '<div>' +
+        '<div class="list list-inset">' +
+          '<label class="item item-input">' +
+          '<i class="icon ion-search placeholder-icon"></i>' +
+          '<input type="text" ng-model="search" placeholder="Search this feed">' +
+        '</div>' +
+      '<div class="list card" ng-repeat="(name,item) in items | orderByPriority | filter:search | orderBy:\'updated\':reverse=true">' +
         '<div class="item item-avatar">' +
           '<img src="http://placehold.it/40x40" ng-href="#/tab/friend/{{item.$id}}">' +
           '<h2>{{item.name}}</h2>' +
@@ -43,8 +55,9 @@ angular.module('fg.directives', [])
           '<p>Updated {{timeAgo(item.updated)}}</p>' +
           '</div>' +
           '<div class="button-bar">' +      
-          '<a href="#/tab/friend/{{item.$id}}" class="button button-small button-calm">View</a>' +
-          '<a href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> ' +
+            '<a href="#/tab/friend/{{item.$id}}" class="button button-small button-calm">View</a>' +
+            '<a href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> ' +
+          '</div>' +
         '</div>' +
       '</div>'
     );

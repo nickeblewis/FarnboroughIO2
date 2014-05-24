@@ -30,6 +30,8 @@ angular.module('fg.services', [])
   
   return {
     all: function(ref, limit) {   
+      if(!alreadyLoaded) {
+       
       $ionicLoading.show({
 
         // The text to display in the loading indicator
@@ -48,6 +50,7 @@ angular.module('fg.services', [])
         // The delay in showing the indicator
         showDelay: 500
       });
+      }
       
       var queryRef = new Firebase(ref).limit(limit);      
       feed = $firebase(queryRef);  
