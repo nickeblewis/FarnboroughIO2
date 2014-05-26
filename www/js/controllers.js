@@ -59,6 +59,7 @@ angular.module('fg.controllers', [])
   //$scope.friend = Friends.get($stateParams.friendId);
   $scope.place = {};
 
+  console.log('Stateparams' + $stateParams.itemId);
   var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $stateParams.itemId);
     dataRef.on('value', function(snapshot) {
       

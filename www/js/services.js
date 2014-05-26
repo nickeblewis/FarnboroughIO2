@@ -25,7 +25,9 @@ angular.module('fg.services', [])
 
 .factory('Feed', function($rootScope, $firebase, Firebase, $ionicLoading) {
     
-  var feed = {};
+  var feed = {},
+      item = {};
+  
   var alreadyLoaded = false;
   
   return {
@@ -66,8 +68,11 @@ angular.module('fg.services', [])
 
       return feed;
     },
-    get: function(itemId) {
-      // TODO: Add later on 
+    get: function(ref) {
+      var queryRef = new Firebase('https://farnborough.firebase.io/' + ref);      
+      item = $firebase(queryRef);  
+      
+      return item;
     }
   }
 })
