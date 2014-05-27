@@ -65,58 +65,27 @@ angular.module('fg.directives', [])
 ])
         
 // Directive controllers
-.controller('PostStatusCtrl', function($scope) {
-                   
+.controller('PostStatusCtrl', function($scope) {                   
   $scope.postStatus = function() {
   var messageListRef = new Firebase('https://farnborough.firebaseio.com/feed');
-  var newMessageRef = messageListRef.push();          
-  
+  var newMessageRef = messageListRef.push();            
     newMessageRef.set({
       'message': $scope.status,
       'updated': (new Date()).getTime()
-    });
-    
-    $scope.status = "";
-    
+    });    
+    $scope.status = "";    
   };      
 })
 
-.controller('FeedListCtrl', function($scope, $rootScope, Feed, $ionicLoading, LoaderService, Auth) {
-    
-  //$scope.alreadyLoaded = null;    
-  // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
-  //if(!alreadyLoaded) {
-  //  $scope.loading = $ionicLoading.show({
-  //        content: 'Loading places...',
-  //        showBackdrop: false
-  //      });
-  //}
-  
-  // Show loader from service
-    //LoaderService.show();
-
-        // add action here...
-
-       
-  $scope.items = Feed.all($scope.ref, $scope.limit);
-  
-  // TODO - Should I do something more specific with this onload event?
-  $scope.items.$on('loaded', function() {
-    //$scope.loading.hide();
-    // alreadyLoaded = true;
-    //console.log($scope.items);
-    //LoaderService.hide();  
-  });
-         // Hide overlay when done
-              
+.controller('FeedListCtrl', function($scope, $rootScope, Feed, $ionicLoading, LoaderService, Auth) {    
+  $scope.items = Feed.all($scope.ref, $scope.limit);  
+  $scope.items.$on('loaded', function() {});              
   $scope.timeAgo = function(ms) {
     return moment(ms).fromNow();
-  }; 
-  
+  };   
   $scope.signedIn = function() {
-    return $rootScope.signedIn;
-  };
- 
+    return Auth.signedIn();
+  }; 
 })
 
 // The Directives

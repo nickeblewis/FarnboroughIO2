@@ -2,7 +2,6 @@ angular.module('fg.controllers', [])
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
   function initialize() {
-    // Show the middle of Farnborough but this could be other places though
     var mapOptions = {
       center: new google.maps.LatLng(51.2944828,-0.7694426),
       zoom: 16,
@@ -45,67 +44,21 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('FeedCtrl', function($scope, $firebase, $ionicLoading) {
+.controller('FeedCtrl', function($scope) {
   $scope.ref = 'https://farnborough.firebaseio.com/places';
-  $scope.limit = 10;
+  $scope.limit = 100;
   $scope.orderby = 'updated';
-  
-  // Now we can set the source ref for the feed, other refs we may use are listed below
-  // $scope.ref = 'https://farnborough.firebaseio.com/feed';
-  
 })
 
 .controller('DetailCtrl', function($scope, $stateParams, $firebase) {
-  //$scope.friend = Friends.get($stateParams.friendId);
   $scope.place = {};
-
-  console.log('Stateparams' + $stateParams.itemId);
   var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $stateParams.itemId);
-    dataRef.on('value', function(snapshot) {
-      
+    dataRef.on('value', function(snapshot) {      
       $scope.place = snapshot.val();
-      
-      // NOTE: Cool don't need to explicitly pull out every field, just pass the objects around      
-      // $scope.place.name = snapshot.val().name;
-      // $scope.place.description = snapshot.val().description;
-      // $scope.place.lat = snapshot.val().lat;
-      // $scope.place.lng = snapshot.val().lng;
-      // $scope.feed = snapshot.val().feed;
-  });
-
-  // None of the below is needed at the moment, keeping the code for reference purposes
-  //   angular.extend($scope, {
-  //     center: {
-  //       lat: $scope.place.lat,
-  //       lng: $scope.place.lng,
-  //       zoom: 16
-  //     },
-  //     markers: {
-  //       main_marker: {
-  //         lat: $scope.place.lat,
-  //         lng: $scope.place.lng,
-  //         focus: true,
-  //         draggable: true,
-  //         message: "Fred"
-
-  //       }
-  //     },
-  //     defaults: {
-  //       maxZoom: 18,
-  //       minZoom: 1,
-  //       zoom: 6,
-  //       zoomControlPosition: 'topright',
-  //       tileLayerOptions: {
-  //         opacity: 0.9,
-  //         detectRetina: true,
-  //         reuseTiles: true,
-  //       },
-  //       scrollWheelZoom: false
-  //     }
-  //   });
+  });  
 })
 
-.controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q) {
+.controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q, Auth) {
   var placeUrl = 'https://farnborough.firebaseio.com/places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
  
@@ -132,6 +85,7 @@ angular.module('fg.controllers', [])
                 
     // Update the profile           
     $scope.place.updated = (new Date()).getTime();
+    $scope.place.userid = Auth.signedInAs().id;
     $scope.place.$save();
 
     // Update the feed
@@ -145,38 +99,21 @@ angular.module('fg.controllers', [])
 
     newMessageRef.set({
       'message': $scope.place.name + " has been edited",
-      'updated': $scope.place.updated});
-    
-    $location.path('/');
-    
+      'updated': $scope.place.updated});    
+    $location.path('/');    
   };
 })
 
-.controller('AddCtrl', function($scope, $firebase, $location) {
+.controller('AddCtrl', function($scope, $firebase, $location, Auth) {
 
   var URL= "https://farnborough.firebaseio.com"
-  // var ref = new Firebase("https://farnborough.firebaseio.com/places");
 
   $scope.items = $firebase(new Firebase(URL + '/places'));
-  //$scope.items = Items.all();
 
   var lat = 0, 
       lng = 0;
 
   $scope.place = {};
-
- // $scope.init = function() {
-   // navigator.geolocation.getCurrentPosition(
-     // function(position) {
-       // $scope.place.lat = position.coords.latitude;
-        //$scope.place.lng = position.coords.longitude;
-      //},
-      //function() {
-       // alert('Error getting location');
-      //});
-  //};
-
-  //$scope.init();
 
   $scope.$on('tab.hidden', function() {
     console.log("Hidden");
@@ -186,7 +123,8 @@ angular.module('fg.controllers', [])
     $scope.items.$add({
       name: $scope.place.name,
       description: $scope.place.description,
-      updated: (new Date()).getTime()
+      updated: (new Date()).getTime(),
+      userid: Auth.signedInAs().id
     });
     $location.path('/');
   };
@@ -207,7 +145,11 @@ angular.module('fg.controllers', [])
   };
   
   $scope.signedIn = function() {
-    return $rootScope.signedIn;  
+    return Auth.signedIn();  
+  };
+  
+  $scope.signedInAs = function() {
+    return Auth.signedInAs().email;  
   };
   
   $scope.register = function() {
