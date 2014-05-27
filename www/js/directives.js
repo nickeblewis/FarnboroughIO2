@@ -35,7 +35,7 @@ angular.module('fg.directives', [])
 .run(['$templateCache',
   function ($templateCache) {
     $templateCache.put(
-      'feedlist.html',
+      'feedlist1.html',
       '<div>' +
         '<div class="list list-inset">' +
           '<label class="item item-input">' +
@@ -108,7 +108,7 @@ angular.module('fg.directives', [])
 
 .directive('feedlist', function() {
   return {
-    templateUrl: 'feedlist.html',
+    templateUrl: 'feedlist1.html',
     restrict: 'EA',
     scope: {
       ref: '=',
