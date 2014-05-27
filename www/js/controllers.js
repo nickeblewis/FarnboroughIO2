@@ -45,7 +45,7 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('FeedCtrl', function($scope, Friends, $firebase, $ionicLoading) {
+.controller('FeedCtrl', function($scope, $firebase, $ionicLoading) {
   $scope.ref = 'https://farnborough.firebaseio.com/places';
   $scope.limit = 10;
   $scope.orderby = 'updated';
@@ -55,7 +55,7 @@ angular.module('fg.controllers', [])
   
 })
 
-.controller('DetailCtrl', function($scope, $stateParams, Friends, $firebase) {
+.controller('DetailCtrl', function($scope, $stateParams, $firebase) {
   //$scope.friend = Friends.get($stateParams.friendId);
   $scope.place = {};
 
@@ -105,7 +105,7 @@ angular.module('fg.controllers', [])
   //   });
 })
 
-.controller('EditCtrl', function($scope, $stateParams, Friends, $firebase, $location, $timeout, $ionicPopup, $q) {
+.controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q) {
   var placeUrl = 'https://farnborough.firebaseio.com/places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
  
@@ -192,20 +192,11 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('LoginCtrl', function($scope, $firebase, Auth, $location) {
+.controller('LoginCtrl', function($scope, $firebase, Auth, $location, $rootScope) {
   
   $scope.user = {};
-  
-//   if (Auth.signedIn()) {
-//       $location.path('/');
-//     }
-  
-  $scope.login = function() {
-//     Authenticate.auth.login('password', {
-//       email: $scope.login.email,
-//       password: $scope.login.password
-//     });  
     
+  $scope.login = function() {    
     Auth.login($scope.user).then(function() {
       $location.path('/');
     })
@@ -215,17 +206,14 @@ angular.module('fg.controllers', [])
     Auth.logout();
   };
   
+  $scope.signedIn = function() {
+    return $rootScope.signedIn;  
+  };
+  
   $scope.register = function() {
-
-    
-//     Authenticate.auth.createUser($scope.login.email, $scope.login.password, function(error, user) {
-//       if (!error) {
-//         console.log('User Id: ' + user.uid + ', Email: ' + user.email);
-//       }
-//     });
     Auth.register($scope.user).then(function (authUser) {
-        console.log(authUser);
-        $location.path('/');
-      });
+      console.log(authUser);
+      $location.path('/');
+    });
   };
 });

@@ -1,6 +1,7 @@
 <ion-view title="Login/Register">
   <ion-content class="has-header padding">
     <h1>Login</h1>
+    <p ng-show="signedIn()">You are currently logged in<p>
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Name</span>
@@ -12,9 +13,9 @@
       </label>  
     </div>                  
     <div class="button-bar">
-      <a ng-click="login()" class="button button-calm">Login</a>
-      <a ng-click="register()" class="button button-balanced">Register</a>
-      <a ng-click="logout()" class="button button-balanced">Logout</a>
+      <a ng-show="!signedIn()" ng-click="login()" class="button button-calm">Login</a>
+      <a ng-show="signedIn()" ng-click="logout()" class="button button-balanced">Logout</a>
+      <a ng-show="!signedIn()" ng-click="register()" class="button button-balanced">Register</a>
     </div>  
   </ion-content>
 </ion-view>
