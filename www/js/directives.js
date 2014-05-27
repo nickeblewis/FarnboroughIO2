@@ -81,7 +81,7 @@ angular.module('fg.directives', [])
   };      
 })
 
-.controller('FeedListCtrl', function($scope, $rootScope, Feed, $ionicLoading, LoaderService, Authenticate) {
+.controller('FeedListCtrl', function($scope, $rootScope, Feed, $ionicLoading, LoaderService, Auth) {
     
   //$scope.alreadyLoaded = null;    
   // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
@@ -113,6 +113,9 @@ angular.module('fg.directives', [])
     return moment(ms).fromNow();
   }; 
   
+  $scope.signedIn = function() {
+    return $rootScope.signedIn;
+  };
  
 })
 

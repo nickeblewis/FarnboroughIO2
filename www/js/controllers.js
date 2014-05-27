@@ -193,7 +193,8 @@ angular.module('fg.controllers', [])
 })
 
 .controller('LoginCtrl', function($scope, $firebase, Auth, $location) {
-
+  
+  $scope.user = {};
   
 //   if (Auth.signedIn()) {
 //       $location.path('/');
@@ -208,6 +209,10 @@ angular.module('fg.controllers', [])
     Auth.login($scope.user).then(function() {
       $location.path('/');
     })
+  };
+  
+  $scope.logout = function() {
+    Auth.logout();
   };
   
   $scope.register = function() {

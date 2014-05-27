@@ -32,10 +32,12 @@ angular.module('fg.services', [])
       } else if (user) {
         // You are logged in
         console.log('factory User ID: ' + user.id + ', Provider: ' + user.provider);
+        $rootScope.signedIn = true;
         //isAuthorised = true;
       } else {
         // User has logged out
         console.log('factory User has logged out');
+        $rootScope.signedIn = false;
       }
   });
   
@@ -43,9 +45,9 @@ angular.module('fg.services', [])
     register: function (user) {
         return auth.createUser(user.email, user.password);
       },
-      signedIn: function () {
-        return auth.user !== null;
-      },
+//       signedIn: function () {
+//         return auth.user !== null && auth.user !== undefined;
+//       },
       login: function (user) {
         return auth.login('password', user);
       },
@@ -54,9 +56,9 @@ angular.module('fg.services', [])
       }
   };
   
-  $rootScope.signedIn = function () {
-    return Auth.signedIn();
-  };
+  //$rootScope.signedIn = function () {
+  //  return Auth.signedIn();
+  //};
   
   return Auth;
 })
