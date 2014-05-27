@@ -63,7 +63,30 @@ angular.module('fg.directives', [])
     );
   }
 ])
-        
+
+.run(['$templateCache',
+  function ($templateCache) {
+    $templateCache.put(
+      'feedlist2.html',
+      '<div>' +
+        '<div class="list list-inset">' +
+          '<label class="item item-input">' +
+          '<i class="icon ion-search placeholder-icon"></i>' +
+          '<input type="text" ng-model="search" placeholder="Search this feed">' +
+        '</div>' +
+      '<ion-list can-swipe="listCanSwipe">' +
+  '<ion-item ng-repeat="item in items"' +
+            'class="item-thumbnail-left">' +
+      '<img ng-src="http://placehold.it/40x40">' +
+    '<h2>{{item.name}}</h2>' +
+    '<p>{{item.description}}</p>' +
+
+  '</ion-item>' +
+'</ion-list>'
+    );
+  }
+])
+
 // Directive controllers
 .controller('PostStatusCtrl', function($scope) {                   
   $scope.postStatus = function() {
@@ -108,7 +131,7 @@ angular.module('fg.directives', [])
 
 .directive('feedlist', function() {
   return {
-    templateUrl: 'feedlist1.html',
+    templateUrl: 'feedlist2.html',
     restrict: 'EA',
     scope: {
       ref: '=',
