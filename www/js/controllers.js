@@ -192,6 +192,31 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('LoginCtrl', function() {
+.controller('LoginCtrl', function($scope, $firebase) {
+  $scope.login = function() {
+    
+  };
   
+  $scope.register = function() {
+    var ref = new Firebase("https://farnborough.firebaseio.com");
+    var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
+      if (error) {
+        alert(error);
+        return;
+      }
+//       if (user) {
+//         // User is already logged in.
+//         doLogin(user);
+//       } else {
+//         // User is logged out.
+//         showLoginBox();
+//       }
+    });
+    
+    authClient.createUser($scope.login.email, $scope.login.password, function(error, user) {
+      if (!error) {
+        console.log('User Id: ' + user.uid + ', Email: ' + user.email);
+      }
+    });
+  };
 });
