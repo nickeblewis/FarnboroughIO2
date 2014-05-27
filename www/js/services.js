@@ -23,6 +23,44 @@ angular.module('fg.services', [])
     //return $firebase(ref);  
 })
 
+.factory('Auth', function($firebase, $rootScope) {
+  var ref = new Firebase('https://farnborough.firebaseio.com');
+  var auth = FirebaseSimpleLogin(ref, function(error, user) {
+    if (error) {
+        // an error ocurred during login
+        console.log(error);
+      } else if (user) {
+        // You are logged in
+        console.log('factory User ID: ' + user.id + ', Provider: ' + user.provider);
+        //isAuthorised = true;
+      } else {
+        // User has logged out
+        console.log('factory User has logged out');
+      }
+  });
+  
+  var Auth = {
+    register: function (user) {
+        return auth.createUser(user.email, user.password);
+      },
+      signedIn: function () {
+        return auth.user !== null;
+      },
+      login: function (user) {
+        return auth.login('password', user);
+      },
+      logout: function () {
+        auth.logout();
+      }
+  };
+  
+  $rootScope.signedIn = function () {
+    return Auth.signedIn();
+  };
+  
+  return Auth;
+})
+
 .factory('Feed', function($rootScope, $firebase, Firebase, $ionicLoading) {
     
   var feed = {},

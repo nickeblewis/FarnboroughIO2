@@ -56,7 +56,7 @@ angular.module('fg.directives', [])
           '</div>' +
           '<div class="button-bar">' +      
             '<a href="#/tab/friend/{{item.$id}}" class="button button-small button-calm">View</a>' +
-            '<a href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> ' +
+            '<a ng-show="signedIn()" href="#/tab/edit/{{item.$id}}" class="button button-small button-assertive">Edit</a> ' +
           '</div>' +
         '</div>' +
       '</div>'
@@ -81,7 +81,7 @@ angular.module('fg.directives', [])
   };      
 })
 
-.controller('FeedListCtrl', function($scope, Feed, $ionicLoading, LoaderService, Authenticate) {
+.controller('FeedListCtrl', function($scope, $rootScope, Feed, $ionicLoading, LoaderService, Authenticate) {
     
   //$scope.alreadyLoaded = null;    
   // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
@@ -111,7 +111,9 @@ angular.module('fg.directives', [])
               
   $scope.timeAgo = function(ms) {
     return moment(ms).fromNow();
-  };  
+  }; 
+  
+ 
 })
 
 // The Directives
