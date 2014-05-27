@@ -75,12 +75,15 @@ angular.module('fg.directives', [])
           '<input type="text" ng-model="search" placeholder="Search this feed">' +
         '</div>' +
       '<ion-list can-swipe="listCanSwipe">' +
-  '<ion-item ng-repeat="item in items"' +
-            'class="item-thumbnail-left">' +
+  '<ion-item ng-repeat="(name,item) in items | orderByPriority | filter:search | orderBy:\'updated\':reverse=true"' +
+            'class="item-thumbnail-left" href="#/tab/friend/{{item.$id}}">' +
       '<img ng-src="http://placehold.it/40x40">' +
     '<h2>{{item.name}}</h2>' +
     '<p>{{item.description}}</p>' +
-
+'<ion-option-button class="button-info"' +
+                       'ng-click="edit(item)">' +
+      'Edit' +
+    '</ion-option-button>' +
   '</ion-item>' +
 '</ion-list>'
     );
@@ -109,6 +112,9 @@ angular.module('fg.directives', [])
   $scope.signedIn = function() {
     return Auth.signedIn();
   }; 
+  $scope.view = function(id) {
+    alert(id);
+  };
 })
 
 // The Directives
