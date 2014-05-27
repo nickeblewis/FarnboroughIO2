@@ -4,9 +4,9 @@ angular.module('fg.services', [])
  * A simple example service that returns some data.
  */
 
-.factory('Authenticate', function ($firebase) {
+.service('Authenticate', function ($firebase) {
   var ref = new Firebase('https://farnborough.firebaseio.com/feed');
-    new FirebaseSimpleLogin(ref, function(error, user) {
+    this.auth = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
         // an error ocurred during login
         console.log(error);
@@ -20,7 +20,7 @@ angular.module('fg.services', [])
       }
     });
 
-    return $firebase(ref);  
+    //return $firebase(ref);  
 })
 
 .factory('Feed', function($rootScope, $firebase, Firebase, $ionicLoading) {

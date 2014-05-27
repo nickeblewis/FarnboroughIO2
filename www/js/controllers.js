@@ -192,28 +192,31 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('LoginCtrl', function($scope, $firebase) {
+.controller('LoginCtrl', function($scope, $firebase, Authenticate) {
+//   var ref = new Firebase("https://farnborough.firebaseio.com");
+//     var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
+//       if (error) {
+//         alert(error);
+//         return;
+//       }
+//     });
   $scope.login = function() {
-    
+    Authenticate.auth.login('password', {
+      email: $scope.login.email,
+      password: $scope.login.password
+    });    
   };
   
   $scope.register = function() {
-    var ref = new Firebase("https://farnborough.firebaseio.com");
-    var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
-      if (error) {
-        alert(error);
-        return;
-      }
-//       if (user) {
-//         // User is already logged in.
-//         doLogin(user);
-//       } else {
-//         // User is logged out.
-//         showLoginBox();
+//     var ref = new Firebase("https://farnborough.firebaseio.com");
+//     var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
+//       if (error) {
+//         alert(error);
+//         return;
 //       }
-    });
+//     });
     
-    authClient.createUser($scope.login.email, $scope.login.password, function(error, user) {
+    Authenticate.auth.createUser($scope.login.email, $scope.login.password, function(error, user) {
       if (!error) {
         console.log('User Id: ' + user.uid + ', Email: ' + user.email);
       }
