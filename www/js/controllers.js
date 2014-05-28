@@ -50,19 +50,13 @@ angular.module('fg.controllers', [])
   $scope.orderby = 'updated';
 })
 
-.controller('DetailCtrl', function($scope, $stateParams, $firebase) {
-//   $scope.place = {};
-//   var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $stateParams.itemId);
-//     dataRef.on('value', function(snapshot) {      
-//       $scope.place = snapshot.val();
-//   });  
-  
-   var placeUrl = 'https://farnborough.firebaseio.com/places/' + $stateParams.itemId;
+.controller('DetailCtrl', function($scope, $stateParams, $firebase, FIREBASE_URL) {
+  var placeUrl = FIREBASE_URL + 'places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
 })
 
 .controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q, Auth) {
-  var placeUrl = 'https://farnborough.firebaseio.com/places/' + $stateParams.itemId;
+  var placeUrl = FIREBASE_URL + 'places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
  
   $scope.confirmDelete = function() {
