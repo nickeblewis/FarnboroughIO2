@@ -74,13 +74,12 @@ angular.module('fg.directives', [])
           '<i class="icon ion-search placeholder-icon"></i>' +
           '<input type="text" ng-model="search" placeholder="Search this feed">' +
         '</div>' +
-      '<ion-list can-swipe="listCanSwipe">' +
-  '<ion-item ng-repeat="(name,item) in items | orderByPriority | filter:search | orderBy:\'updated\':reverse=true"' +
-            'class="item-thumbnail-left" href="#/tab/friend/{{item.$id}}">' +
-      '<img ng-src="http://placehold.it/40x40">' +
-    '<h2>{{item.name}}</h2>' +
-    '<p>{{item.description}}</p>' +
-'<ion-option-button class="button-info"' +
+        '<ion-list can-swipe="listCanSwipe">' +
+          '<ion-item ng-repeat="(name,item) in items | filter:search | orderBy:\'updated\':reverse=true"' +
+            'href="#/tab/friend/{{item.$id}}">' +
+          '<h2>{{item.name}}</h2>' +
+          '<p>{{item.description}}</p>' +
+          '<ion-option-button class="button-info"' +
                        'ng-click="edit(item)">' +
       'Edit' +
     '</ion-option-button>' +
