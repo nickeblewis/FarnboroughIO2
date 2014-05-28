@@ -51,11 +51,14 @@ angular.module('fg.controllers', [])
 })
 
 .controller('DetailCtrl', function($scope, $stateParams, $firebase) {
-  $scope.place = {};
-  var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $stateParams.itemId);
-    dataRef.on('value', function(snapshot) {      
-      $scope.place = snapshot.val();
-  });  
+//   $scope.place = {};
+//   var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $stateParams.itemId);
+//     dataRef.on('value', function(snapshot) {      
+//       $scope.place = snapshot.val();
+//   });  
+  
+   var placeUrl = 'https://farnborough.firebaseio.com/places/' + $stateParams.itemId;
+  $scope.place = $firebase(new Firebase(placeUrl));
 })
 
 .controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q, Auth) {
