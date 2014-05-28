@@ -58,7 +58,7 @@ angular.module('fg.controllers', [])
     return Auth.signedIn();  
   };
   $scope.signedInAndOwnItem = function(userid) {
-    return (Auth.signedIn() && (Auth.signedInAs() === userid));
+    return (Auth.signedIn() && (Auth.signedInAs().id === userid));
   };
 })
 
