@@ -6,24 +6,37 @@
   The Friends service returns an array of friend data
 -->
 
-<ion-view title="Creating {{place.name}}" ng-switch on="signedIn()">
-  <ion-content has-header="true" padding="true" ng-switch-when="true">
-    <div class="list">
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Name</span>
-        <input type="text" placeholder="Nick" ng-model="place.name">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Description</span>
-        <textarea placeholder="About this place" ng-model="place.description" rows="8"></textarea>
-      </label>  
+<ion-view title="Creating {{place.name}}">
+  <ion-content has-header="true" padding="true">
+    <div ng-switch on="signedIn()">
+      <div ng-switch-when="true">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Name</span>
+            <input type="text" placeholder="Nick" ng-model="place.name">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <textarea placeholder="About this place" ng-model="place.description" rows="8"></textarea>
+          </label>  
+        </div>
+        <div class="button-bar">
+          <a href="#/" class="button button-calm">Cancel</a>
+          <a ng-click="save()" class="button button-balanced">Save</a>            
+        </div>   
+      </div>
+      <div ng-switch-when="false">
+        <div class="list">
+      <p>Registered users can create new items, please sign in or register for a new account</p>
+      </div>
+      </div>
+<!--       <div ng-switch-when-default>
+        <div class="list">
+          <p>In order to add items you must be a registered user and logged in</p>
+        </div>
+      </div> -->
     </div>
-    <div class="button-bar">
-      <a href="#/" class="button button-calm">Cancel</a>
-      <a ng-click="save()" class="button button-balanced">Save</a>            
-    </div>       
-  </ion-content>
-  <ion-content ng-switch-when="false">
-    <p>not logged in</p>
+        
+    
   </ion-content>
 </ion-view>         
