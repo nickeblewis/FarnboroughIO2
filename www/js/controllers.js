@@ -57,6 +57,9 @@ angular.module('fg.controllers', [])
   $scope.signedIn = function() {
     return Auth.signedIn();  
   };
+  $scope.signedInAndOwnItem = function(userid) {
+    return (Auth.signedIn() && (Auth.signedInAs() === userid));
+  };
 })
 
 .controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q, Auth, FIREBASE_URL) {
