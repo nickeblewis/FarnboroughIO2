@@ -67,9 +67,9 @@ angular.module('fg.controllers', [])
     }).then(function(res) {
       if(res) {
         $scope.place.$remove();
-        $location.path('#/tab/friend/' + $stateParams.itemId);
+        $location.path('/');
       } else {
-        $location.path('#/tab/friend/' + $stateParams.itemId);
+        $location.path('/');
       }
     });
   };
@@ -99,7 +99,7 @@ angular.module('fg.controllers', [])
       'message': $scope.place.name + " has been edited",
       'updated': $scope.place.updated,
       'userid': Auth.signedInAs().id});
-    $location.path('/');    
+    $location.path('#/tab/friend/' + $stateParams.itemId);  
   };
 })
 
