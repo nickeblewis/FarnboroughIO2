@@ -50,16 +50,23 @@ angular.module('fg.controllers', [])
   $scope.orderby = 'updated';
 })
 
-.controller('DetailCtrl', function($scope, $stateParams, $firebase, FIREBASE_URL) {
+.controller('DetailCtrl', function($scope, $stateParams, $firebase, FIREBASE_URL, Auth) {
   var placeUrl = FIREBASE_URL + 'places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
   $scope.place.id = $stateParams.itemId;
+  $scope.signedIn = function() {
+    return Auth.signedIn();  
+  };
 })
 
 .controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q, Auth, FIREBASE_URL) {
   var placeUrl = FIREBASE_URL + 'places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
  
+  $scope.signedIn = function() {
+    return Auth.signedIn();  
+  };
+  
   $scope.confirmDelete = function() {
     $ionicPopup.confirm({
       title: 'Delete Item',
