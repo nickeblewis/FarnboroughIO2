@@ -79,6 +79,7 @@ angular.module('fg.directives', [])
           '<ion-item class="item item-icon-right" ng-repeat="(name,item) in items | orderByPriority | filter:search" ng-href="#/tab/friend/{{item.$id}}">' +
           '<h2>{{item.name}}</h2>' +
           '<p>{{item.description}}</p>' +
+      '<i class="icon ion-chevron-right icon-accessory"></i>' +
           '<ion-option-button class="button-info" ng-click="edit(item)">Edit</ion-option-button>' +
         '</ion-item>' +
       '</ion-list>'
