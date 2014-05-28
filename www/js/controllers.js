@@ -53,9 +53,10 @@ angular.module('fg.controllers', [])
 .controller('DetailCtrl', function($scope, $stateParams, $firebase, FIREBASE_URL) {
   var placeUrl = FIREBASE_URL + 'places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
+  $scope.place.id = $stateParams.itemId;
 })
 
-.controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q, Auth) {
+.controller('EditCtrl', function($scope, $stateParams, $firebase, $location, $timeout, $ionicPopup, $q, Auth, FIREBASE_URL) {
   var placeUrl = FIREBASE_URL + 'places/' + $stateParams.itemId;
   $scope.place = $firebase(new Firebase(placeUrl));
  
