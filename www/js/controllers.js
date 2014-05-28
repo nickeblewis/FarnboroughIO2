@@ -114,7 +114,7 @@ angular.module('fg.controllers', [])
       'message': $scope.place.name + " has been edited",
       'updated': $scope.place.updated,
       'userid': Auth.signedInAs().id}, $scope.place.updated);
-    $location.path('#/tab/friend/' + $stateParams.itemId);  
+    $location.path('/tab/friend/' + $stateParams.itemId);  
   };
 })
 
