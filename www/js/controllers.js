@@ -105,10 +105,10 @@ angular.module('fg.controllers', [])
                    
     //$scope.place.imageData = 0;
 
-    newMessageRef.set({
+    newMessageRef.setWithPriority({
       'message': $scope.place.name + " has been edited",
       'updated': $scope.place.updated,
-      'userid': Auth.signedInAs().id});
+      'userid': Auth.signedInAs().id}, $scope.place.updated);
     $location.path('#/tab/friend/' + $stateParams.itemId);  
   };
 })
