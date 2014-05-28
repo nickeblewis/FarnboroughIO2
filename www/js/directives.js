@@ -75,16 +75,12 @@ angular.module('fg.directives', [])
           '<input type="text" ng-model="search" placeholder="Search this feed">' +
         '</div>' +
         '<ion-list can-swipe="listCanSwipe">' +
-          '<ion-item ng-repeat="(name,item) in items | filter:search | orderBy:\'updated\':reverse=true"' +
-            'href="#/tab/friend/{{item.$id}}">' +
+          '<ion-item ng-repeat="(name,item) in items | filter:search | orderBy:\'updated\':reverse=true" href="#/tab/friend/{{item.$id}}">' +
           '<h2>{{item.name}}</h2>' +
           '<p>{{item.description}}</p>' +
-          '<ion-option-button class="button-info"' +
-                       'ng-click="edit(item)">' +
-      'Edit' +
-    '</ion-option-button>' +
-  '</ion-item>' +
-'</ion-list>'
+          '<ion-option-button class="button-info" ng-click="edit(item)">Edit</ion-option-button>' +
+        '</ion-item>' +
+      '</ion-list>'
     );
   }
 ])

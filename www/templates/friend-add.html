@@ -6,8 +6,8 @@
   The Friends service returns an array of friend data
 -->
 
-<ion-view title="Creating {{place.name}}">
-  <ion-content has-header="true" padding="true">
+<ion-view title="Creating {{place.name}}" ng-switch on="signedIn()">
+  <ion-content has-header="true" padding="true" ng-switch-when="true">
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Name</span>
@@ -22,5 +22,8 @@
       <a href="#/" class="button button-calm">Cancel</a>
       <a ng-click="save()" class="button button-balanced">Save</a>            
     </div>       
+  </ion-content>
+  <ion-content ng-switch-when="false">
+    <p>not logged in</p>
   </ion-content>
 </ion-view>         

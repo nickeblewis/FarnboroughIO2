@@ -106,9 +106,9 @@ angular.module('fg.controllers', [])
 })
 
 .controller('AddCtrl', function($scope, $firebase, $location, Auth) {
-  if (!Auth.signedIn()) {
-    $location.path('/');
-  }
+//   if (!Auth.signedIn()) {
+//     $location.path('/');
+//   }
   
   var URL= "https://farnborough.firebaseio.com"
 
@@ -131,6 +131,10 @@ angular.module('fg.controllers', [])
       userid: Auth.signedInAs().id
     });
     $location.path('/');
+  };
+  
+  $scope.signedIn = function() {
+    return Auth.signedIn();  
   };
 })
 
