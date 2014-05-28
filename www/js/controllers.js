@@ -90,7 +90,7 @@ angular.module('fg.controllers', [])
 
     // Need some unit tests for this but...
     // "Link Up Ltd" updated their Profile
-    var messageListRef = new Firebase('https://farnborough.firebaseio.com/feed');
+    var messageListRef = new Firebase(FIREBASE_URL + 'feed');
     var newMessageRef = messageListRef.push();          
                    
     //$scope.place.imageData = 0;
@@ -103,14 +103,12 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('AddCtrl', function($scope, $firebase, $location, Auth) {
+.controller('AddCtrl', function($scope, $firebase, $location, Auth, FIREBASE_URL) {
 //   if (!Auth.signedIn()) {
 //     $location.path('/');
 //   }
   
-  var URL= "https://farnborough.firebaseio.com"
-
-  $scope.items = $firebase(new Firebase(URL + '/places'));
+  $scope.items = $firebase(new Firebase(FIREBASE_URL + '/places'));
 
   var lat = 0, 
       lng = 0;
@@ -148,8 +146,7 @@ angular.module('fg.controllers', [])
   
   $scope.logout = function() {
     Auth.logout();
-      $location.path('/');
-    
+      $location.path('/');    
   };
   
   $scope.signedIn = function() {
