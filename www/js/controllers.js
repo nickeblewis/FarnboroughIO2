@@ -44,8 +44,8 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('FeedCtrl', function($scope) {
-  $scope.ref = 'https://farnborough.firebaseio.com/places';
+.controller('FeedCtrl', function($scope, FIREBASE_URL) {
+  $scope.ref = FIREBASE_URL + 'places';
   $scope.limit = 100;
   $scope.orderby = 'updated';
 })
@@ -67,9 +67,9 @@ angular.module('fg.controllers', [])
     }).then(function(res) {
       if(res) {
         $scope.place.$remove();
-        $location.path('/');
+        $location.path('#/tab/friend/' + $stateParams.itemId);
       } else {
-        $location.path('/');
+        $location.path('#/tab/friend/' + $stateParams.itemId);
       }
     });
   };

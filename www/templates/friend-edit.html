@@ -1,10 +1,3 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
-
 <ion-view title="Editing {{place.name}}">
   <ion-content has-header="true" padding="true">
     <div class="list">
@@ -18,7 +11,7 @@
       </label>  
     </div>                  
     <div class="button-bar">
-      <a href="#/" class="button button-calm">Cancel</a>
+      <a href="#/friend/{{place.id}}" class="button button-calm">Cancel</a>
       <a ng-click="save()" class="button button-balanced">Save</a>
       <a ng-click="confirmDelete()" class="button button-assertive">Delete</a>
     </div>       
