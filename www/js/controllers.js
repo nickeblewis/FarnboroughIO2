@@ -58,6 +58,11 @@ angular.module('fg.controllers', [])
     return Auth.signedIn();  
   };
   $scope.signedInAndOwnItem = function(userid) {
+    
+    // Special case for the moment
+    if (Auth.signedIn() && userid === undefined)
+      return true;
+    
     return (Auth.signedIn() && (Auth.signedInAs().id === userid));
   };
 })
