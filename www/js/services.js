@@ -44,7 +44,10 @@ angular.module('fg.services', [])
   
   var Auth = {
     register: function (user) {
-        return auth.createUser(user.email, user.password);
+//         return auth.createUser(user.email, user.password);
+        auth.createUser(user.email, user.password, function(error,user) {
+          console.log('You have registered!');
+        });
       },
       signedIn: function () {
         return $rootScope.signedIn;

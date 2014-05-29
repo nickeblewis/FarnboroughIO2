@@ -172,9 +172,7 @@ angular.module('fg.controllers', [])
   };
   
   $scope.register = function() {
-    Auth.register($scope.user).then(function (authUser) {
-      console.log(authUser);
-      $location.path('/');
-    });
+    Auth.register($scope.user);
+    $location.path('/');    
   };
 });
