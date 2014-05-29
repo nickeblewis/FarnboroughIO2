@@ -31,13 +31,13 @@ angular.module('fg.services', [])
         console.log(error);
       } else if (user) {
         // You are logged in
-        // console.log('factory User ID: ' + user.id + ', Provider: ' + user.provider);
+        console.log('factory User ID: ' + user.id + ', Provider: ' + user.provider);
         $rootScope.signedIn = true;
         $rootScope.signedInAs = user;
         //isAuthorised = true;
       } else {
         // User has logged out
-        // console.log('factory User has logged out');
+        console.log('factory User has logged out');
         $rootScope.signedIn = false;
       }
   });
@@ -57,6 +57,7 @@ angular.module('fg.services', [])
       },
       logout: function () {
         auth.logout();
+        $rootScope.signedIn = false;
       }
   };
     

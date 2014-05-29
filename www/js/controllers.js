@@ -149,19 +149,18 @@ angular.module('fg.controllers', [])
   };
 })
 
-.controller('LoginCtrl', function($scope, $firebase, Auth, $location, $rootScope) {
+.controller('LoginCtrl', function($scope, $firebase, Auth, $location, $rootScope, $q) {
   
   $scope.user = {};
     
   $scope.login = function() {    
-    Auth.login($scope.user).then(function() {
-      $location.path('/');
-    })
+    Auth.login($scope.user);
+    $location.path('/');    
   };
   
   $scope.logout = function() {
     Auth.logout();
-      $location.path('/');    
+    $location.path('/');    
   };
   
   $scope.signedIn = function() {
